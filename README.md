@@ -1,201 +1,76 @@
-# Municipal Service Delivery Analytics
-
-## Eight-Week Data Analytics Capstone Project
-
-### Project Overview
-
-This capstone project focuses on using data analytics to evaluate municipal service delivery and identify opportunities to improve operational efficiency.
-
-The project adopts the perspective of a Data Analytics Consultant engaged to examine municipal service requests, understand service demand, evaluate departmental performance, and develop data-driven recommendations.
-
-The analysis will use Python and data visualization techniques to investigate municipal service operations and support evidence-based decision-making.
-
-### 1. Business Problem
-
-Municipal service departments receive requests from residents concerning issues such as noise complaints, infrastructure maintenance, sanitation, and other public services.
-
-However, municipal administrators may face challenges in monitoring service demand, evaluating resolution efficiency, identifying operational bottlenecks, and allocating resources effectively.
-
-Without reliable analytical insights, these challenges can affect service delivery, operational planning, and resource management.
-
-This project aims to address these challenges by analyzing historical municipal service request records.
-
-### 2. Project Objectives
-
-The primary objective is to evaluate municipal service delivery performance and identify opportunities for operational improvement.
-
-The specific objectives are to:
-
-1. Identify the most frequently requested municipal services.
-2. Examine service request volumes across departments.
-3. Evaluate service resolution times and request completion patterns.
-4. Investigate the distribution of urgent and high-priority requests.
-5. Analyze geographic patterns in municipal service demand.
-6. Identify monthly and seasonal variations in service requests.
-7. Assess data quality and identify potential reporting inconsistencies.
-8. Develop actionable recommendations to improve service delivery.
-
-### 3. Business Questions
-
-The project will address the following questions:
-
-* Which municipal service categories receive the highest number of requests?
-* Which departments manage the greatest service request volumes?
-* How do resolution times vary across departments and service categories?
-* How are high-priority requests distributed across departments?
-* Which geographic districts experience the highest service demand?
-* Are there identifiable monthly or seasonal service request patterns?
-* What operational and data-quality issues may affect service delivery performance?
-
-### 4. Dataset Description
-
-**Dataset:** Municipal_Service_Data.csv
-
-The dataset contains 2,000 municipal service request records and 11 original columns.
-
-It includes information relating to service requests, responsible departments, request priorities, statuses, dates, and geographic districts.
-
-The dataset will be examined to determine its completeness, consistency, suitability, and limitations.
-
-**Data source limitation:** The original municipality, data provenance, and licensing information have not been specified. Therefore, the analysis will not attribute findings to a particular city.
-
-### 5. Project Scope
-
-The project will focus on:
-
-* Municipal service request analysis.
-* Departmental workload assessment.
-* Service resolution performance.
-* Geographic distribution of requests.
-* Priority-based service demand.
-* Temporal trends.
-* Data-quality assessment.
-* Operational improvement recommendations.
-
-The project will use the available dataset to develop descriptive and diagnostic insights.
-
-Where information is unavailable, the limitations will be documented rather than making unsupported assumptions.
-
-### 6. Tools and Technologies
-
-The following tools are planned:
-
-**Python:** Data processing and analysis.
-
-**Pandas and NumPy:** Data cleaning, manipulation, and calculations.
-
-**Matplotlib and Seaborn:** Exploratory data visualization.
-
-**Plotly:** Interactive charts.
-
-**Jupyter Notebook:** Documentation and analytical workflow.
-
-**Streamlit:** Interactive dashboard development.
-
-**GitHub:** Version control and project documentation.
-
-**PowerPoint:** Final presentation.
-
-### 7. Project Methodology
-
-The project will follow these stages:
-
-**Stage 1 — Project Definition**
-
-Define the business problem, analytical objectives, scope, and expected outcomes.
-
-**Stage 2 — Dataset Exploration**
-
-Examine dataset structure, variables, data types, missing values, and potential inconsistencies.
-
-**Stage 3 — Data Preparation**
-
-Clean the dataset, standardize relevant fields, and prepare analytical variables.
-
-**Stage 4 — Exploratory Data Analysis**
-
-Investigate service demand, departmental workload, geographic patterns, and resolution trends.
-
-**Stage 5 — KPI Development**
-
-Define and calculate meaningful municipal service performance indicators.
-
-**Stage 6 — Diagnostic Analysis**
-
-Investigate service performance differences and potential operational bottlenecks.
-
-**Stage 7 — Dashboard Development**
-
-Develop an interactive dashboard to communicate findings to municipal stakeholders.
-
-**Stage 8 — Reporting and Presentation**
-
-Prepare the final report, presentation, and recommendations.
-
-### 8. Eight-Week Project Timeline
-
-| Week | Project Activity          | Expected Deliverable                         |
-| ---- | ------------------------- | -------------------------------------------- |
-| 1    | Project Definition        | Project proposal, README, GitHub repository  |
-| 2    | Dataset Exploration       | Exploratory notebook                         |
-| 3    | Data Preparation          | Cleaning notebook and cleaned dataset        |
-| 4    | Exploratory Data Analysis | Visualizations and written insights          |
-| 5    | KPI Analysis              | KPI calculations and interpretations         |
-| 6    | Diagnostic Analysis       | Advanced analytical findings                 |
-| 7    | Dashboard Development     | Interactive dashboard                        |
-| 8    | Final Reporting           | Final PDF report and PowerPoint presentation |
-
-### 9. Expected Outcomes
-
-The project is expected to provide:
-
-* A clearer understanding of municipal service demand.
-* Insights into departmental workload distribution.
-* An assessment of service resolution performance.
-* Identification of geographic and temporal service patterns.
-* Evidence of potential data-quality and operational issues.
-* An interactive dashboard for performance monitoring.
-* Practical recommendations for improving municipal service delivery.
-
-### 10. Project Limitations
-
-The dataset does not include first-response timestamps or established service-level agreement thresholds.
-
-Consequently, actual first-response times and formal SLA compliance cannot be measured directly.
-
-The dataset also does not contain sufficient staffing information to establish whether service delays are caused by workforce shortages.
-
-These limitations will be considered throughout the analysis.
-
-### 11. Repository Structure — Week 1
-
+# Municipal Service Delivery Analytics — Eight-Week Capstone
+
+**Student:** Onyemachi Joshua Ndubuisi  
+**Program:** Data Analyst Capstone  
+**Client:** City Administration (hypothetical; no named municipality verified)  
+**Current milestone:** Weeks 1–2 revised; Week 3 follows after feedback is resolved.
+
+## Business problem
+Municipal leadership needs defensible information about service volume, resolution times, urgent handling, geographic demand and process bottlenecks. Poor visibility can lead to misdirected process reviews and resource-planning decisions. Monetary costs and staffing effects cannot be estimated because the supplied data contain no budgets, labour hours or staffing levels.
+
+## Client's six business questions and measurable objectives
+| # | Client question | Measurable objective | Available fields |
+|---|---|---|---|
+| Q1 | Which service categories have the highest volume? | Count requests by category; rank all nine and report the top three and their shares. | `Request_Type, Service_Request_ID` |
+| Q2 | What are the average response and resolution times by department? | Calculate mean, median and 90th-percentile resolution days for valid closed requests by department; flag median >20% above overall median. Report response time as not measurable. | `Department, Date_Opened, Date_Closed, Status` |
+| Q3 | Are urgent requests handled within acceptable timeframes? | Compare High/Critical resolution durations with illustrative thresholds (Critical 2 days; High 5 days); test sensitivity at ±50%. Never label these official SLAs. | `Priority_Level, Status, Date_Opened, Date_Closed` |
+| Q4 | Which geographic districts have the highest demand? | Count requests per district; compare each district share with the equal-share reference of 20%, flag >25%. | `Ward_District, Service_Request_ID` |
+| Q5 | Are there seasonal or time-based patterns in service requests? | Count requests by calendar month and year; flag months >20% above the monthly average, noting only two years of data. | `Date_Opened` |
+| Q6 | Where do delays or bottlenecks occur in the request lifecycle? | Compare backlog and valid resolution times by department/category; quantify status/closure-date conflicts and flag >10% mismatch. Lifecycle stages beyond open/close cannot be isolated. | `Status, Date_Opened, Date_Closed, Department, Request_Type` |
+
+
+## Stakeholders and decisions
+| Stakeholder | Decision supported | Questions |
+|---|---|---|
+| City Manager | Prioritize reviews of departments with slower resolution and potential resource reallocation; staffing decisions require further evidence. | Q2, Q6 |
+| Service Operations Director | Decide which categories need process review or triage changes. | Q1, Q6 |
+| Department Managers | Examine backlog and priority-based resolution times before scheduling crews. | Q2, Q3, Q6 |
+| Geographic Planning Lead | Prioritize investigation of higher-volume districts; avoid per-capita claims without population data. | Q4, Q5 |
+| Data Governance Lead | Commission reconciliation of status/date contradictions and improve field validation. | Q2, Q3, Q6 |
+
+
+## Draft KPI plan
+| Draft KPI | Definition | Decision relevance | Illustrative threshold / caveat |
+|---|---|---|---|
+| Closure status rate | Count(Status = Closed) / total requests | Snapshot of workload state | Monitor; not equivalent to verified completion |
+| Verified resolution median | Median(Date_Closed - Date_Opened) for Status = Closed AND valid dates | Typical duration by department | Flag department >120% of overall median |
+| 90th-percentile resolution | P90 of same eligible duration subset | Detect slow tail | Compare across departments; no official target |
+| Priority timeliness (scenario) | Eligible Critical/High cases within hypothetical threshold / eligible Critical/High cases | Test urgent handling | Critical ≤2 days; High ≤5 days; ±50% sensitivity; not SLA compliance |
+| Unresolved status share | Count(Status in Open, In Progress) / total | Backlog proxy | Flag >40% for review; snapshot, not aged backlog |
+| Status/date conflict rate | Count(Closed without close date OR non-Closed with close date) / total | Trustworthiness of performance data | Flag >10%; data stewardship priority |
+| Request volume by district | Count(requests in district) / total | Geographic workload distribution | Flag >25% share as a screening heuristic, not capacity proof |
+
+
+## Dataset and limitations
+The capstone program provided `data/raw/Municipal_Service_Data.csv`: 2,000 records and 11 columns. Each row is one service request. The original city, license and provenance are unspecified. First-response timestamps, official SLA thresholds, intermediate workflow events and staffing data are absent. Therefore **response times, official SLA compliance, causes of delay, and staffing shortfalls cannot be measured**. Hypothetical priority thresholds are for sensitivity analysis only.
+
+## Reproduce the work
+1. Clone this repository and open its root folder.
+2. Install Python 3.10+ and run `python -m pip install -r requirements.txt`.
+3. Run `jupyter notebook` and open `notebooks/capstone.ipynb`.
+4. Run cells top to bottom from the repository root. The notebook reads `data/raw/Municipal_Service_Data.csv` without modifying it.
+5. Read `docs/Data_Dictionary.md` and the written observations beside the outputs.
+
+## Project timeline
+Week 1: definition; Week 2: exploration; Week 3: cleaning; Week 4: EDA; Week 5: KPIs; Week 6: diagnostic analysis; Week 7: dashboard; Week 8: report and presentation. Update the **same root notebook** each week, rather than creating a nested weekly project.
+
+## Repository layout
 ```text
-Municipal-Service-Analytics-Capstone/
-│
-├── README.md
-├── requirements.txt
-├── SUBMISSION_INSTRUCTIONS.md
-│
-└── docs/
-    └── Week_1_Project_Proposal.md
+README.md
+requirements.txt
+docs/Week_1_Project_Proposal.md
+docs/Data_Dictionary.md
+data/raw/Municipal_Service_Data.csv
+data/processed/.gitkeep
+notebooks/capstone.ipynb
+dashboard/dashboard_link.txt
+report/.gitkeep
+presentation/.gitkeep
+assets/.gitkeep
 ```
 
-Additional project folders and analytical files will be introduced as the capstone progresses.
+## AI and generated-content disclosure
+OpenAI ChatGPT helped draft and revise the README and proposal, generate notebook code and explanatory observations, and package submission files. The numerical claims in this revision were cross-checked by running Python against the provided CSV; the student must review, understand, and be able to explain every cell and decision. Earlier `SUBMISSION_INSTRUCTIONS.md` and `WEEK_2_SUBMISSION_GUIDE.md` were generated with AI assistance and should remain disclosed; they are administrative guides, not independently authored analysis. AI assistance is not a substitute for source verification or academic authorship.
 
-### 12. Project Status
-
-**Current milestone:** Week 1 — Project Definition and Repository Setup.
-
-**Status:** Prepared for Week 1 submission.
-
-The subsequent stages will document dataset exploration, data preparation, analysis, dashboard development, and final reporting.
-
----
-
-**Project:** Municipal Service Delivery Analytics
-
-**Project Type:** Eight-Week Data Analytics Capstone
-
-**Role:** Data Analytics Consultant
-
-**Repository:** Municipal-Service-Analytics-Capstone
+## Current feedback status
+The Week 1 and Week 2 supervisor feedback requires a repository transfer, repository screenshot, weekly tags and student review. Those **cannot be completed by a downloadable ZIP**; see `docs/RESUBMISSION_STEPS.md`.
